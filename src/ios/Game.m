@@ -149,7 +149,14 @@
  	NSString *leaderboardId = [command.arguments objectAtIndex:0];
     
 	//http://stackoverflow.com/questions/21591123/how-to-get-local-player-score-from-game-center
-	GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
+
+	//GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
+	//for some reason the above call fails many times with error code kCFURLErrorTimedOut  = -1001,
+	//The change/fix found in the following link solves this issue
+	//http://stackoverflow.com/questions/28072536/nsurlerrordomain-code-1005-from-gkleaderboard-loadscoreswithcompletionhandler
+
+	GKLeaderboard *leaderboard = [[GKLeaderboard alloc] initWithPlayers:@[ GKLocalPlayer.localPlayer ]];
+
   	leaderboard.identifier = leaderboardId;
 	[leaderboard loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
 		if (error) {
