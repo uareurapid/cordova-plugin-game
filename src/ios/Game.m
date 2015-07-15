@@ -39,6 +39,16 @@
 
 - (void)showAllLeaderboards:(CDVInvokedUrlCommand *)command {
  //do nothing, since the native ui already allows navigation between leaderboards
+ 	//[self.commandDelegate runInBackground:^{
+         if ( self.leaderboardController == nil ) {
+             self.leaderboardController = [[GKLeaderboardViewController alloc] init];
+             self.leaderboardController.leaderboardDelegate = self;//
+         }
+         self.leaderboardController.category = nil;
+         CDVViewController *vc = (CDVViewController *)[super viewController];
+         [vc presentViewController:self.leaderboardController animated:YES completion: ^{
+         }];
+    // }];
 }
 
 - (void)login:(CDVInvokedUrlCommand *)command {
