@@ -38,7 +38,7 @@
 }
 
 - (void)showAllLeaderboards:(CDVInvokedUrlCommand *)command {
- //do nothing, since the native ui already allows navigation between leaderboards
+
  	//[self.commandDelegate runInBackground:^{
          if ( self.leaderboardController == nil ) {
              self.leaderboardController = [[GKLeaderboardViewController alloc] init];
