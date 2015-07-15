@@ -15,7 +15,12 @@
 //Email: cranberrygame@yahoo.com
 //Homepage: http://www.github.com/cranberrygame
 //License: MIT (http://opensource.org/licenses/MIT)
- 
+
+//Copyright (c) 2015 Paulo Cristo (uareurapid)
+//Email: cristo.paulo@gmail.com
+//Homepage: http://www.github.com/uareurapid
+//License: MIT (http://opensource.org/licenses/MIT)
+
 #import <Foundation/Foundation.h>
 
 #import <Cordova/CDVPlugin.h>
@@ -30,6 +35,7 @@
 - (void)getPlayerScore:(CDVInvokedUrlCommand *)command;
 - (void)submitScore:(CDVInvokedUrlCommand *)command;
 - (void)showLeaderboard:(CDVInvokedUrlCommand *)command;
+- (void)showAllLeaderboards:(CDVInvokedUrlCommand *)command;
 - (void)unlockAchievement:(CDVInvokedUrlCommand *)command;
 - (void)incrementAchievement:(CDVInvokedUrlCommand *)command;
 - (void)showAchievements:(CDVInvokedUrlCommand *)command;

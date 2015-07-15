@@ -81,6 +81,14 @@ module.exports = {
 		function (error) {
 		}, "Game", "showLeaderboard", [leaderboardId]);
 	},
+	//added possibility to show all the leaderboards
+	showAllLeaderboards: function () {
+		cordova.exec(
+			function (result) {
+			},
+			function (error) {
+			}, "Game", "showAllLeaderboards", []);
+	},
 	unlockAchievement: function (achievementId, tag) {
 		var self = this;
 		cordova.exec(function (result) {

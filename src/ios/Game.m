@@ -16,6 +16,11 @@
 //Homepage: http://www.github.com/cranberrygame
 //License: MIT (http://opensource.org/licenses/MIT)
 
+//Copyright (c) 2015 Paulo Cristo (uareurapid)
+//Email: cristo.paulo@gmail.com
+//Homepage: http://www.github.com/uareurapid
+//License: MIT (http://opensource.org/licenses/MIT)
+
 #import "Game.h"
 #import <Cordova/CDVViewController.h>
 
@@ -30,6 +35,10 @@
 
 - (void)setUp:(CDVInvokedUrlCommand *)command {
 
+}
+
+- (void)showAllLeaderboards:(CDVInvokedUrlCommand *)command {
+ //do nothing, since the native ui already allows navigation between leaderboards
 }
 
 - (void)login:(CDVInvokedUrlCommand *)command {

@@ -2,6 +2,12 @@
 //Email: cranberrygame@yahoo.com
 //Homepage: http://cranberrygame.github.io
 //License: MIT (http://opensource.org/licenses/MIT)
+
+//Copyright (c) 2015 Paulo Cristo (uareurapid)
+//Email: cristo.paulo@gmail.com
+//Homepage: http://www.github.com/uareurapid
+//License: MIT (http://opensource.org/licenses/MIT)
+
 package com.cranberrygame.cordova.plugin.game;
 
 import org.apache.cordova.CordovaPlugin;
@@ -351,7 +357,40 @@ public class Game extends CordovaPlugin implements GameHelper.GameHelperListener
 			});	
 			
 			return true;
-		}		
+		}//add the possibility to show all the leaderboards
+        else if (action.equals("showAllLeaderboards")) {
+            //Activity activity=cordova.getActivity();
+            //webView
+            //
+            Log.d(LOG_TAG, "Show all the leaderboards");
+
+            final CallbackContext delayedCC = callbackContext;
+            cordova.getActivity().runOnUiThread(new Runnable(){
+            		@Override
+            		public void run() {
+            			if (getGameHelper().isSignedIn()) {
+            				_showAllLeaderboards();
+
+            				PluginResult pr = new PluginResult(PluginResult.Status.OK);
+            				//pr.setKeepCallback(true);
+            				delayedCC.sendPluginResult(pr);
+            				//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+            				//pr.setKeepCallback(true);
+            				//delayedCC.sendPluginResult(pr);
+            			}
+            			else {
+            				//PluginResult pr = new PluginResult(PluginResult.Status.OK);
+            				//pr.setKeepCallback(true);
+            				//delayedCC.sendPluginResult(pr);
+            				PluginResult pr = new PluginResult(PluginResult.Status.ERROR, "Not logged in");
+            				//pr.setKeepCallback(true);
+            				delayedCC.sendPluginResult(pr);
+            			}
+            	}
+            });
+
+            return true;
+        }
 		else if (action.equals("showAchievements")) {
 			//Activity activity=cordova.getActivity();
 			//webView
@@ -559,6 +598,12 @@ public class Game extends CordovaPlugin implements GameHelper.GameHelperListener
 		//show a specific leaderboard
 		this.cordova.getActivity().startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getGameHelper().getApiClient(), leaderboardId), 0);		
 	}
+
+	private void _showAllLeaderboards(){
+    	//show all leaderboards
+    	this.cordova.getActivity().startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getGameHelper().getApiClient()), 0);
+    	//this.cordova.getActivity().startActivityFor(Games.Leaderboards.getAllLeaderboardsIntent(getGameHelper().getApiClient()));
+    }
 
 	private void _unlockAchievement(String achievementId){
 /*	
