@@ -110,6 +110,19 @@
     //}];//cranberrygame
 }
 
+- (void)isPlayerAuthenticated:(CDVInvokedUrlCommand *)command {
+    
+    if ([GKLocalPlayer localPlayer]!=nil &&[GKLocalPlayer localPlayer].authenticated) {
+        CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
+        [self.commandDelegate sendPluginResult:pr callbackId:command.callbackId];
+    }
+    else {
+        CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:false];
+        [self.commandDelegate sendPluginResult:pr callbackId:command.callbackId];
+        
+    }
+}
+
 - (void)logout:(CDVInvokedUrlCommand *)command {
     //Unfortunately, this takes the user outside your app.
     //http://stackoverflow.com/questions/9995576/how-to-show-game-centers-player-profile-view

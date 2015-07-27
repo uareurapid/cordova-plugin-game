@@ -24,7 +24,14 @@
 #import <Foundation/Foundation.h>
 
 #import <Cordova/CDVPlugin.h>
+
+//check if we are running on IOS 9
+#ifdef __IPHONE_9_0
 #import <GameKit/GameKit.h>
+#else
+#import <GameCenter/GameCenter.h>
+#endif
+
 
 @interface Game : CDVPlugin <GKLeaderboardViewControllerDelegate,GKAchievementViewControllerDelegate>
 
@@ -40,5 +47,6 @@
 - (void)incrementAchievement:(CDVInvokedUrlCommand *)command;
 - (void)showAchievements:(CDVInvokedUrlCommand *)command;
 - (void)resetAchievements:(CDVInvokedUrlCommand *)command;
+- (void)isPlayerAuthenticated:(CDVInvokedUrlCommand *)command;
 
 @end
