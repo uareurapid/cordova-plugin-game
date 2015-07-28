@@ -232,7 +232,34 @@ public class Game extends CordovaPlugin implements GameHelper.GameHelperListener
 			});
 			
 			return true;
-		}		
+		}
+		else if (action.equals("isPlayerAuthenticated")) {
+        			//Activity activity=cordova.getActivity();
+        			//webView
+        			//
+					Log.d(LOG_TAG, "isPlayerAuthenticated call... ");
+
+        			final CallbackContext delayedCC = callbackContext;
+        			cordova.getActivity().runOnUiThread(new Runnable(){
+        				@Override
+        				public void run() {
+        					boolean isAuthenticated = getGameHelper().isSignedIn();
+        					Log.d(LOG_TAG, "isPlayerAuthenticated? " + isAuthenticated);
+        					PluginResult pr = null;
+        					if(isAuthenticated) {
+        						pr = new PluginResult(PluginResult.Status.OK,true);
+        					}
+        					else {
+        						pr = new PluginResult(PluginResult.Status.ERROR, false);
+        					}
+
+        					delayedCC.sendPluginResult(pr);
+
+        				}
+        			});
+
+        			return true;
+        }
 		else if (action.equals("submitScore")) {
 			//Activity activity=cordova.getActivity();
 			//webView

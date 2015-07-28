@@ -112,7 +112,7 @@
 
 - (void)isPlayerAuthenticated:(CDVInvokedUrlCommand *)command {
     
-    if ([GKLocalPlayer localPlayer]!=nil &&[GKLocalPlayer localPlayer].authenticated) {
+    if ([GKLocalPlayer localPlayer]!=nil && [GKLocalPlayer localPlayer].authenticated) {
         CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
         [self.commandDelegate sendPluginResult:pr callbackId:command.callbackId];
     }

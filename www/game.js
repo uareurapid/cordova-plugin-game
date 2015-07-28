@@ -61,6 +61,14 @@ module.exports = {
 				self.onGetPlayerScoreFailed();
 		}, "Game", "getPlayerScore", [leaderboardId]);
 	},
+	isPlayerAuthenticated: function () {
+		cordova.exec(function (result) {
+			return result;
+		}, 
+		function (error) {
+			return false;
+		}, "Game", "isPlayerAuthenticated", []);
+	},
 	submitScore: function (leaderboardId, score, tag) {
 		var self = this;
 		cordova.exec(function (result) {
