@@ -212,6 +212,12 @@
 			//[pr setKeepCallbackAsBool:YES];
 			//[self.commandDelegate sendPluginResult:pr callbackId:command.callbackId];
 		}
+		//no scores yet, put 0
+        else if (scores==nil) {
+            CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%lld", (long)0]];
+            //[pr setKeepCallbackAsBool:YES];
+            [self.commandDelegate sendPluginResult:pr callbackId:command.callbackId];
+        }
 	}];
 }
 

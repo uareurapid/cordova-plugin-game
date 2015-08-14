@@ -244,7 +244,6 @@ public class Game extends CordovaPlugin implements GameHelper.GameHelperListener
         				@Override
         				public void run() {
         					boolean isAuthenticated = getGameHelper().isSignedIn();
-        					Log.d(LOG_TAG, "isPlayerAuthenticated? " + isAuthenticated);
         					PluginResult pr = null;
         					if(isAuthenticated) {
         						pr = new PluginResult(PluginResult.Status.OK,true);
