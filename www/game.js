@@ -3,10 +3,14 @@ module.exports = {
 	_loggedin: false,
 	tag: '',
 	setUp: function () {
+		var self = this;
 		cordova.exec(
 		function (result) {
 		}, 
 		function (error) {
+			if (self.onSetupFailed)
+				self.onSetupFailed(error);
+
 		}, "Game", "setUp", []);
     },
 	login: function (tag) {
@@ -21,7 +25,7 @@ module.exports = {
 		function (error) {
 			self.tag = tag;		
 			if (self.onLoginFailed)			
-				self.onLoginFailed();
+				self.onLoginFailed(error);
 		}, "Game", "login", []);
     },
 	logout: function () {
@@ -62,12 +66,15 @@ module.exports = {
 		}, "Game", "getPlayerScore", [leaderboardId]);
 	},
 	isPlayerAuthenticated: function () {
+		var self = this;
 		cordova.exec(function (result) {
-			return result;
-		}, 
-		function (error) {
-			return false;
-		}, "Game", "isPlayerAuthenticated", []);
+				if (self.onIsPlayerAuthenticatedSucceeded)
+					self.onIsPlayerAuthenticatedSucceeded(result);
+			},
+			function (error) {
+				if (self.onIsPlayerAuthenticatedFailed)
+					self.onIsPlayerAuthenticatedFailed();
+			}, "Game", "isPlayerAuthenticated", []);
 	},
 	submitScore: function (leaderboardId, score, tag) {
 		var self = this;
@@ -154,5 +161,8 @@ module.exports = {
 	onIncrementAchievementSucceeded: null,
 	onIncrementAchievementFailed: null,
 	onResetAchievementsSucceeded: null,
-	onResetAchievementsFailed: null
+	onResetAchievementsFailed: null,
+	onIsPlayerAuthenticatedSucceeded: null,
+	onIsPlayerAuthenticatedFailed: null,
+	onSetupFailed: null
 };
